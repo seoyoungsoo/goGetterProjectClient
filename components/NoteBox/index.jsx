@@ -9,10 +9,10 @@ import { insertPartner, insertMessage, receive } from '@reducers/conversation';
 const NoteBox = ({ userId, sendToMessage }) => {
   const conversationList = useSelector((state) => state.conversation);
 
-  const [memberList, setMemberList] = useState([]);
-  const [partner, setPartner] = useState(null);
-  const [roomId, setRoomId] = useState(null);
-  const [nickName, setNickName] = useState(null);
+  // const [memberList, setMemberList] = useState([]);
+  const [partner, setPartner] = useState('');
+  const [roomId, setRoomId] = useState('');
+  const [nickName, setNickName] = useState('');
 
   const dispatch = useDispatch();
 
@@ -26,8 +26,8 @@ const NoteBox = ({ userId, sendToMessage }) => {
       method: 'get',
     }).then((res) => {
       if (res.data.message === '조회성공') {
-        console.log(res.data.data);
-        setMemberList(res.data.data);
+        // console.log(res.data.data);
+        // setMemberList(res.data.data);
         for (const key in res.data.data) {
           dispatch(
             insertPartner({
@@ -68,7 +68,9 @@ const NoteBox = ({ userId, sendToMessage }) => {
             />
           ))}
         </Content>
-        <Detail sendToMessage={sendToMessage} userId={userId} partner={partner} roomId={roomId} nickName={nickName} />
+        {partner && (
+          <Detail sendToMessage={sendToMessage} userId={userId} partner={partner} roomId={roomId} nickName={nickName} />
+        )}
       </Container>
     </div>
   );
