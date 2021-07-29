@@ -4,32 +4,43 @@ import { Container } from '@pages/Note/Content/styles';
 import apiController from '@apis/apiController';
 import SockJsClient from 'react-stomp';
 import { useDispatch, useSelector } from 'react-redux';
+import moment from 'moment';
 import { insertPartner, insertMessage, receive } from '@reducers/conversation';
 
 const Content = ({ userId }) => {
   const socketRef = useRef(null);
   let topics = ['/topic/' + userId];
 
-  const [messages, setMessages] = useState([]);
   // const [memberList, setMemberList] = useState([]);
 
   const dispatch = useDispatch();
 
-  const sendToMessage = (senderId, receiverId, roomId, msg) => {
-    const params = {
+  const sendToMessage = (senderId, receiverId, roomId, chat, nickName) => {
+    const nowTime = moment().format('YYYY-MM-DD HH:mm:ss');
+
+    const reduxParams = {
+      the_other_user_id: receiverId,
+      nick_name: nickName,
+      content: chat,
+      send_at: nowTime,
+      message_room_id: roomId,
+    };
+    const socketParams = {
       sender_id: senderId,
       receiver_id: receiverId,
       message_room_id: roomId,
-      content: msg,
+      content: chat,
     };
-    socketRef.current.sendMessage('/app/chat/send', JSON.stringify(params));
-    dispatch(insertMessage(params));
+    socketRef.current.sendMessage('/app/chat/send', JSON.stringify(socketParams));
+    dispatch(insertMessage(reduxParams));
   };
 
   const receiveMessage = (msg) => {
-    console.log(msg);
-    dispatch(receive(msg));
+    console.log('receive!' + msg);
+    // dispatch(receive(msg));
   };
+
+  // const url = window.location.protocol + '//' + window.location.host + '/chat';
 
   return (
     <Container>
@@ -42,8 +53,6 @@ const Content = ({ userId }) => {
         ref={socketRef}
       />
       <NoteBox userId={userId} sendToMessage={sendToMessage} />
-      {/* <NoteBox userId={userId} /> */}
-      {/* <Detail sendToMessage={sendToMessage} userId={userId} /> */}
     </Container>
   );
 };
