@@ -16,7 +16,7 @@ const Conversation = (state = initialState, action) => {
       return { ...state };
     case NEWMESSAGE:
       // console.log(action.payload);
-      state[action.payload.receiver_id] = [...state[action.payload.receiver_id], action.payload];
+      state[action.payload.the_other_user_id] = [...state[action.payload.the_other_user_id], action.payload];
       return { ...state };
     case RECEIVED:
     // console.log(action.payload);
