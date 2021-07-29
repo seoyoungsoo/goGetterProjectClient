@@ -32,25 +32,8 @@ const config = {
     rules: [
       {
         test: /\.jsx?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: { browsers: ['last 2 chrome versions'] },
-                debug: isDevelopment,
-              },
-            ],
-            '@babel/preset-react',
-          ],
-          env: {
-            development: {
-              plugins: [require.resolve('react-refresh/babel')],
-            },
-          },
-        },
-        exclude: path.join(__dirname, 'node_modules'),
       },
       {
         test: /\.css?$/,
@@ -59,10 +42,15 @@ const config = {
     ],
   },
   plugins: [new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' })],
+  // plugins: [
+  //   new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+  //   isDevelopment && new webpack.HotModuleReplacementPlugin(),
+  //   isDevelopment && new ReactRefreshWebpackPlugin(),
+  // ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/',
+    publicPath: '/dist',
   },
   devServer: {
     historyApiFallback: true,
@@ -89,7 +77,7 @@ if (isDevelopment && config.plugins) {
   // config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'server', openAnalyzer: true }));
 }
 if (!isDevelopment && config.plugins) {
-  // config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
+  config.plugins.push(new webpack.LoaderOptionsPlugin({ minimize: true }));
   // config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static' }));
 }
 
