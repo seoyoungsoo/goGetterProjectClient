@@ -4,6 +4,7 @@ export const ChatZone = styled.div`
   width: 100%;
   height: 650px;
   display: flex;
+  flex-direction: column;
   flex: 1;
 `;
 
