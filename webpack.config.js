@@ -53,6 +53,7 @@ const config = {
     publicPath: '/dist',
   },
   devServer: {
+    disableHostCheck: true,
     historyApiFallback: true,
     port: 3000,
     host: '0.0.0.0',
