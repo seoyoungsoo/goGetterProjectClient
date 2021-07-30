@@ -32,6 +32,7 @@ const signin = (email, password) => {
     )
     .then((res) => {
       if (res.data.data) {
+        sessionStorage.setItem('nick_name', JSON.stringify(res.data.data.nick_name));
         sessionStorage.setItem('access_token', JSON.stringify(res.data.data.access_token));
         sessionStorage.setItem('refresh_token', JSON.stringify(res.data.data.refresh_token));
         sessionStorage.setItem('user_id', JSON.stringify(res.data.data.user_id));
@@ -42,6 +43,7 @@ const signin = (email, password) => {
 };
 
 const logout = () => {
+  sessionStorage.removeItem('nick_name');
   sessionStorage.removeItem('access_token');
   sessionStorage.removeItem('refresh_token');
   sessionStorage.removeItem('user_id');
