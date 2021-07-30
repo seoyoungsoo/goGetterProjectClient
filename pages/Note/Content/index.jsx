@@ -1,17 +1,17 @@
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import NoteBox from '@components/NoteBox';
 import { Container } from '@pages/Note/Content/styles';
-import apiController from '@apis/apiController';
 import SockJsClient from 'react-stomp';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
-import { insertPartner, insertMessage, receive } from '@reducers/conversation';
+import Scrollbar from 'react-custom-scrollbars';
+import { insertMessage, receive } from '@reducers/conversation';
 
 const Content = ({ userId }) => {
   const socketRef = useRef(null);
   let topics = ['/topic/' + userId];
 
-  // const [memberList, setMemberList] = useState([]);
+  const scrollbarRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -33,14 +33,26 @@ const Content = ({ userId }) => {
     };
     socketRef.current.sendMessage('/app/chat/send', JSON.stringify(socketParams));
     dispatch(insertMessage(reduxParams));
+    scrollbarToBottom();
   };
 
   const receiveMessage = (msg) => {
-    console.log('receive!' + msg);
-    // dispatch(receive(msg));
+    dispatch(receive(msg));
+    scrollbarToBottom();
   };
 
-  // const url = window.location.protocol + '//' + window.location.host + '/chat';
+  const scrollbarToBottom = () => {
+    if (scrollbarRef.current) {
+      if (
+        scrollbarRef.current.getScrollHeight() <
+        scrollbarRef.current.getClientHeight() + scrollbarRef.current.getScrollTop() + 150
+      ) {
+        setTimeout(() => {
+          scrollbarRef.current?.scrollToBottom();
+        }, 50);
+      }
+    }
+  };
 
   return (
     <Container>
@@ -52,7 +64,7 @@ const Content = ({ userId }) => {
         onMessage={(msg) => receiveMessage(msg)}
         ref={socketRef}
       />
-      <NoteBox userId={userId} sendToMessage={sendToMessage} />
+      <NoteBox userId={userId} sendToMessage={sendToMessage} scrollbarRef={scrollbarRef} />
     </Container>
   );
 };
