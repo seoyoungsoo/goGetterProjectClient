@@ -12,6 +12,7 @@ import {
 const user = {
   user_id: JSON.parse(sessionStorage.getItem('user_id')),
   user_grade: JSON.parse(sessionStorage.getItem('user_grade')),
+  nick_name: JSON.parse(sessionStorage.getItem('nick_name')),
 };
 
 const initialState = user.user_id ? { isLoggedIn: true, user } : { isLoggedIn: false, user: null };
