@@ -8,6 +8,9 @@ import { insertPartner, insertMessage, receive } from '@reducers/conversation';
 import SockJsClient from 'react-stomp';
 
 const NoteBox = ({ userId }) => {
+  const socketRef = useRef(null);
+  let topics = ['/topic/' + userId];
+
   const conversationList = useSelector((state) => state.conversation);
 
   const [memberList, setMemberList] = useState([]);
@@ -48,9 +51,6 @@ const NoteBox = ({ userId }) => {
     setNickName(nickName);
   }, []);
 
-  const socketRef = useRef(null);
-  let topics = ['/topic/' + userId];
-
   const sendToMessage = (senderId, receiverId, roomId, chat, nickName) => {
     const nowTime = moment().format('YYYY-MM-DD HH:mm:ss');
 
@@ -72,9 +72,13 @@ const NoteBox = ({ userId }) => {
   };
 
   const receiveMessage = (msg) => {
-    console.log('receive!' + msg);
+    console.log(msg);
     // dispatch(receive(msg));
   };
+
+  if (!memberList.length) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
