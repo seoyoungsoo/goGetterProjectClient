@@ -21,3 +21,7 @@ export const Content = styled.div`
     border-bottom: 1px solid #ced4da;
   }
 `;
+
+export const Chats = styled.div`
+  flex: 1;
+`;
