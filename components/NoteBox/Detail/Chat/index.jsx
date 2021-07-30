@@ -3,6 +3,7 @@ import { ChatWrapper } from '@components/NoteBox/Detail/Chat/styles';
 import formatDate from '@utils/formatDate';
 
 const Chat = ({ data }) => {
+  // console.log(data);
   return (
     <ChatWrapper>
       <div className="chat-img">
@@ -10,7 +11,7 @@ const Chat = ({ data }) => {
       </div>
       <div className="chat-text">
         <div className="chat-user">
-          <b>{data.send_nick_name}</b>
+          <b>{data.nick_name}</b>
           <span>{formatDate(data.send_at)}</span>
         </div>
         <p>{data.content}</p>
