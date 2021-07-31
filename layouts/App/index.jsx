@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/shareboard/write" component={ShareBoardWrite} />
           <Route path="/shareboard" component={ShareBoard} />
           <Route path="/event/now/:id" component={EventDetail} />
-          <Route path="/event/now" component={Event} />
+          <Route path="/event/now" component={Auth(Event, 'USER')} />
           <Route path="/event/write" component={Auth(EventWrite, 'ADMIN')} />
           <Route path="/event/end" component={EventEnd} />
           <Route path="/note" component={Note} />
