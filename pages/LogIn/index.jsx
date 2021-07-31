@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { AllDiv, LoginDiv, Form, Login, Input, Button, Search, Social, FaceBook, Google } from '@pages/LogIn/styles';
 import { Link, withRouter } from 'react-router-dom';
 import Header from '@layouts/Header';
@@ -8,14 +8,11 @@ import { Redirect } from 'react-router';
 import pwEncrypt from '@utils/pwEncrypt';
 import { signin } from '@actions/auth';
 import { useDispatch, useSelector } from 'react-redux';
+import apiController from '@apis/apiController';
 
 const LogIn = (props) => {
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
-  const [loginSuccess, setLoginSuccess] = useState(false);
-
-  const { isLoggedIn } = useSelector((state) => state.auth);
-  const { message } = useSelector((state) => state.message);
 
   const dispatch = useDispatch();
 
@@ -25,38 +22,28 @@ const LogIn = (props) => {
       const pwHash = pwEncrypt(password);
 
       dispatch(signin(email, pwHash))
-        .then(() => {
-          // props.history.push('/main');
-          // window.location.reload();
-        })
+        .then(() => {})
         .catch((err) => {
           console.dir(err);
         });
-
-      // axios
-      //   .post(
-      //     '/api/signin',
-      //     { email, password: pwHash },
-      //     {
-      //       withCredentials: true,
-      //     },
-      //   )
-      //   .then((res) => {
-      //     console.log(res);
-      //     if (res.data.data.access_token) {
-      //       setLoginSuccess(true);
-      //       // props.history.push('/main');
-      //       // window.location.reload();
-      //       localStorage.setItem('user', JSON.stringify(res.data.data));
-      //     }
-      //   });
     },
     [email, password],
   );
 
-  // if (isLoggedIn) {
-  //   props.history.push('/main');
-  // }
+  const onClickFacebook = () => {
+    apiController({
+      url: '/auth/FACEBOOK',
+      method: 'get',
+    })
+      .then((res) => {
+        // console.log(res.data.data);
+        window.location.href = `${res.data.data}`;
+      })
+      .then((res) => {
+        props.history.push('/');
+        console.log(res);
+      });
+  };
 
   return (
     <div id="container" style={{ height: '100%' }}>
@@ -98,7 +85,7 @@ const LogIn = (props) => {
             </span>
           </Search>
           <Social>
-            <FaceBook>
+            <FaceBook onClick={onClickFacebook}>
               <i className="fab fa-facebook-square"></i> 페이스북으로 시작하기
             </FaceBook>
             <Google>
