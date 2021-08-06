@@ -34,15 +34,10 @@ const LogIn = (props) => {
     apiController({
       url: '/auth/FACEBOOK',
       method: 'get',
-    })
-      .then((res) => {
-        // console.log(res.data.data);
-        window.location.href = `${res.data.data}`;
-      })
-      .then((res) => {
-        props.history.push('/');
-        console.log(res);
-      });
+    }).then((res) => {
+      console.log(res.data.data);
+      // window.location.href = `${res.data.data}`;
+    });
   };
 
   return (
