@@ -10,7 +10,6 @@ import {
   AuthCheckBtn,
 } from '@components/Modal/Auth/styles';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 
 const Auth = ({ authModalOpen, setAuthModalOpen, setEmailAuthCheck, email }) => {
   const [sendMail, setSendMail] = useState(false);
