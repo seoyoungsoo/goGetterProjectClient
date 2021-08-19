@@ -10,7 +10,6 @@ import { insertMessage, receive } from '@reducers/conversation';
 const Content = ({ userId }) => {
   const socketRef = useRef(null);
   let topics = ['/topic/' + userId];
-  console.log('hi');
 
   const scrollbarRef = useRef(null);
 
