@@ -12,8 +12,6 @@ import {
 import apiController from '@apis/apiController';
 
 const RecordDelete = (props) => {
-  // console.log(props);
-
   const onClickDelete = useCallback(
     (e) => {
       e.preventDefault();

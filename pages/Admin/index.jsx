@@ -28,15 +28,6 @@ const Admin = () => {
   }, []);
 
   const handlePageChange = (page) => {
-    // let params = {
-    //   page: page - 1,
-    // };
-    // const res = await apiController({
-    //   url: `/admin/user/list`,
-    //   method: 'get',
-    //   data: params,
-    // });
-
     axios
       .get('/api/admin/user/list', {
         withCredentials: true,
@@ -47,7 +38,6 @@ const Admin = () => {
       .then((res) => {
         const data = res.data.data.content;
         setPost(data);
-        // console.log(data);
         setTotalElements(res.data.pagination.total_elements);
         setCurrentPage(res.data.pagination.current_page);
       });

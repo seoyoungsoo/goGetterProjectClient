@@ -24,8 +24,6 @@ const NoteBox = ({ userId, sendToMessage, scrollbarRef }) => {
       method: 'get',
     }).then((res) => {
       if (res.data.message === '조회성공') {
-        // console.log(res.data.data);
-        // console.log(res.data.data.length);
         setReceiver(res.data.data);
         setMemberList(res.data.data);
         for (const key in res.data.data) {

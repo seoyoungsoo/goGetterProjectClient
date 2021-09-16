@@ -21,7 +21,6 @@ const ShareBoard = (props) => {
         withCredentials: true,
       })
       .then((res) => {
-        // console.log(res);
         setPopularSharedBoards(res.data.data);
       })
       .catch((err) => {
@@ -40,9 +39,7 @@ const ShareBoard = (props) => {
         },
       })
       .then((res) => {
-        // console.log(res.data);
         setSharedBoards(res.data.data);
-        // console.log(page);
 
         const pagination = res.data.pagination;
         const { total_pages, total_elements, current_page, current_elements } = pagination;

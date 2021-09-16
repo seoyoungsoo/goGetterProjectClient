@@ -7,13 +7,10 @@ import { useSelector } from 'react-redux';
 
 const EditForm = ({ title, content, Id }) => {
   const users = useSelector((state) => state.auth.user);
-  // const [changeTitle, onChangeTitle] = useInput('');
-  // const [changeContent, onChangeContent] = useInput('');
   const [titleValue, setTitleValue] = useState(title);
   const [contentValue, setContentValue] = useState(content);
 
   const onSubmit = (e) => {
-    // console.log(users.user_id);
     let params = {
       content: contentValue,
       title: titleValue,

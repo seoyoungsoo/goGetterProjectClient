@@ -38,10 +38,6 @@ const DCContent = (props) => {
     setCheckModalOpen(true);
   };
 
-  // const onClickEditBtn = (e) => {
-  //   history.push(`/discussion/edit/${id}`);
-  // };
-
   useEffect(() => {
     apiController({
       url: `/bkusers/discussions/${id}?userId=${currentId}`,

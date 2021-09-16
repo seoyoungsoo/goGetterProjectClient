@@ -5,8 +5,6 @@ import { Col } from 'antd';
 import 'antd/dist/antd.css';
 
 const Cards = (props) => {
-  // console.log(props);
-
   let title = props.title,
     bookTitle = props.bookTitle;
 

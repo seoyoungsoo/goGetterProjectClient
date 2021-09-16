@@ -75,9 +75,7 @@ const Discussion = () => {
     setSelectValue(value);
   };
 
-  // console.log({ post });
   const onSubmit = (e) => {
-    // console.log('ddd');
     axios
       .get(`/api/discussions/search-${selectValue}/${text}`, {
         withCredentials: true,

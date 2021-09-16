@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import apiController from '@apis/apiController';
 
 const ShareBoardReply = (props) => {
-  // const userId = useSelector((state) => state.auth.user.user_id);
   const state = useSelector((state) => state.auth);
   let userId = -1;
   const boardId = props.boardId;
@@ -17,8 +16,6 @@ const ShareBoardReply = (props) => {
   if (state.user !== null) {
     userId = state.user.user_id;
   }
-
-  // console.log(props, boardId, userId);
 
   const onSubmit = useCallback(
     (e) => {

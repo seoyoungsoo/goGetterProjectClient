@@ -20,8 +20,6 @@ const Detail = ({ userId, sendToMessage, scrollbarRef }) => {
   const onSubmitForm = useCallback(
     (e) => {
       e.preventDefault();
-      // console.log(userId, partner, roomId, chat, nickName);
-      // 통신
       sendToMessage(userId, partner, roomId, chat, nickName);
       setChat('');
     },
@@ -37,7 +35,6 @@ const Detail = ({ userId, sendToMessage, scrollbarRef }) => {
       url: `users/chats/detail/${roomId}`,
       method: 'get',
     }).then((res) => {
-      // console.log(res.data.data);
       if (data.conversation[partner].length === 1) {
         for (const key in res.data.data) {
           let params = {

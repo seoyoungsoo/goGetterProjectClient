@@ -13,8 +13,6 @@ import { Link, Redirect, useHistory } from 'react-router-dom';
 import apiController from '@apis/apiController';
 
 const Check = ({ checkModalOpen, setCheckModalOpen, Id, userId }) => {
-  // console.log({ checkModalOpen });
-  // console.log(Id);
   const history = useHistory();
 
   const Delete = useCallback(

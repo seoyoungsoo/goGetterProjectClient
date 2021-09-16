@@ -3,7 +3,6 @@ import { ChatWrapper } from '@components/NoteBox/Detail/Chat/styles';
 import formatDate from '@utils/formatDate';
 
 const Chat = ({ data }) => {
-  // console.log(data);
   return (
     <ChatWrapper>
       <div className="chat-img">

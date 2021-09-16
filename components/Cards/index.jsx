@@ -6,12 +6,6 @@ import 'antd/dist/antd.css';
 import { useSelector } from 'react-redux';
 
 const Cards = (props) => {
-  // const onClick = useCallback(() => {
-  //   props.history.push('/');
-  //   window.location.reload();
-  // }, []);
-
-  // console.log(props);
   let title = props.title,
     bookTitle = props.bookTitle;
 

@@ -15,7 +15,6 @@ import { useSelector } from 'react-redux';
 import apiController from '@apis/apiController';
 
 const ShareEdit = (props) => {
-  // console.log(props);
   const state = useSelector((state) => state.auth.user);
 
   const boardId = props.boardId;

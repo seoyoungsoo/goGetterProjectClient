@@ -12,7 +12,6 @@ import {
 import axios from 'axios';
 
 const EventDelete = (props) => {
-  // console.log(props);
   const Delete = useCallback(
     (e) => {
       e.preventDefault();

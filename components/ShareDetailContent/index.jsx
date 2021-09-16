@@ -19,7 +19,6 @@ const ShareDetailContent = (props) => {
   if (state.user !== null) {
     userId = state.user.user_id;
   }
-  // console.log(props);
 
   const onClickEditBtn = useCallback((e) => {
     e.preventDefault();

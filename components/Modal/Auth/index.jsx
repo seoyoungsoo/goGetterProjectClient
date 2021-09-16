@@ -53,7 +53,6 @@ const Auth = ({ authModalOpen, setAuthModalOpen, setEmailAuthCheck, email }) => 
     (e) => {
       e.preventDefault();
       setEmailAuthCheck(false);
-      // console.log(authNumber);
 
       axios
         .get(`/api/issuance-confirm?number=${authNumber}`, {

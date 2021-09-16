@@ -2,7 +2,6 @@ import React from 'react';
 import { ReplyContents, ReplyUser, ReplyContent } from '@components/Reply/styles';
 
 const ReplyComment = (props) => {
-  // console.log(props);
   return (
     <ReplyContents>
       <ReplyUser>

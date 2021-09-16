@@ -16,7 +16,6 @@ import axios from 'axios';
 import apiController from '@apis/apiController';
 
 const EventEdit = (props) => {
-  // const state = useSelector((state) => state.auth.user);
   const eventId = props.eventId;
   const [title, onChangeTitle, setTitle] = useInput(props.post.title);
   const [content, onChangeContent, setContent] = useInput(props.post.content);

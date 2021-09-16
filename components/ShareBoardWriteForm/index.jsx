@@ -19,7 +19,6 @@ const ShareBoardWriteForm = (props) => {
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      // console.log(title, bookTitle, content, tag, userId);
 
       if (!title.length || !title.trim().length) {
         alert('글 제목을 작성해주세요.');

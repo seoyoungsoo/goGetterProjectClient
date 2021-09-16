@@ -5,8 +5,6 @@ import DiscussionEditForm from '@components/DiscussionEditForm';
 import { Container, DCContainer } from '@pages/Discussion/DCEdit/styles';
 
 const DCEdit = (props) => {
-  console.log('EDIT');
-  // console.log(props.location.state);
   const title = props.location.state.title;
   const content = props.location.state.content;
   const Id = props.match.params.id;
