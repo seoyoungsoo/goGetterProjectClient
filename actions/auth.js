@@ -85,13 +85,6 @@ export const logout = () => (dispatch) => {
 };
 
 export const auth = (userId) => (dispatch) => {
-  // const request = axios.get(`/api/auth?userId=${userId}`).then((res) => res.data);
-
-  // return {
-  //   type: AUTH_USER,
-  //   payload: request,
-  // };
-
   return axios.get(`/api/auth?userId=${userId}`).then(
     (res) => {
       dispatch({

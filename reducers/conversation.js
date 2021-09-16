@@ -13,19 +13,15 @@ const initialState = [];
 const Conversation = (state = initialState, action) => {
   switch (action.type) {
     case NEWPARTNER:
-      // console.log(action.payload.list);
       state[action.payload.partner] = [...action.payload.list];
       return { ...state };
     case CHATLIST:
-      // console.log(action.payload);
       state[action.payload.partner] = [...state[action.payload.partner], action.payload.list];
       return { ...state };
     case NEWMESSAGE:
-      // console.log(action.payload);
       state[action.payload.the_other_user_id] = [...state[action.payload.the_other_user_id], action.payload];
       return { ...state };
     case RECEIVED:
-      // console.log(action.payload);
       if (state[action.payload.the_other_user_id] === undefined) {
         state[action.payload.the_other_user_id] = [action.payload];
       } else {
